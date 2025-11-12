@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Portfolio</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Patrick+Hand&family=Permanent+Marker&display=swap");
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: linear-gradient(
+          135deg,
+          #fef5e7 0%,
+          #fff9e6 50%,
+          #ffeaa7 100%
+        );
+        font-family: "Patrick Hand", cursive;
+        color: #2d3436;
+        overflow-x: hidden;
+      }
+
+      /* Decorative doodles */
+      .doodle {
+        position: fixed;
+        opacity: 0.3;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .star {
+        width: 40px;
+        height: 40px;
+        background: radial-gradient(circle, #fd79a8 0%, #e84393 100%);
+        clip-path: polygon(
+          50% 0%,
+          61% 35%,
+          98% 35%,
+          68% 57%,
+          79% 91%,
+          50% 70%,
+          21% 91%,
+          32% 57%,
+          2% 35%,
+          39% 35%
+        );
+        animation: twinkle 3s ease-in-out infinite;
+      }
+
+      @keyframes twinkle {
+        0%,
+        100% {
+          transform: scale(1) rotate(0deg);
+          opacity: 0.3;
+        }
+        50% {
+          transform: scale(1.2) rotate(180deg);
+          opacity: 0.6;
+        }
+      }
+
+      .squiggle {
+        width: 100px;
+        height: 100px;
+        border: 3px dashed #74b9ff;
+        border-radius: 50%;
+        animation: spin 20s linear infinite;
+      }
+
+      @keyframes spin {
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* Header */
+      header {
+        text-align: center;
+        padding: 40px 20px 40px;
+        width: 600px;
+        margin: 0 auto;
+      }
+
+      h1 {
+        font-family: "Caveat", cursive;
+        font-size: 5em;
+        color: #e84393;
+        transform: rotate(-2deg);
+        display: inline-block;
+        text-shadow: 3px 3px 0 #fff, 5px 5px 0 #fdcb6e;
+        margin-bottom: 20px;
+        line-height: 1.2;
+      }
+
+      .subtitle {
+        font-size: 1.8em;
+        color: #0984e3;
+        transform: rotate(1deg);
+        display: inline-block;
+        margin-top: 10px;
+      }
+
+      /* Profile Picture */
+      .profile-pic-container {
+        margin: 30px 0 20px;
+        display: inline-block;
+      }
+
+      .profile-pic {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        border: 5px dashed #fd79a8;
+        padding: 10px;
+        background: white;
+        box-shadow: 0 5px 15px rgba(232, 67, 147, 0.3);
+        transition: transform 0.3s ease;
+      }
+
+      .profile-pic:hover {
+        transform: rotate(5deg) scale(1.05);
+      }
+
+      .profile-pic img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid #2d3436;
+      }
+
+      /* Container */
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        position: relative;
+        z-index: 1;
+      }
+
+      /* Section styling */
+      section {
+        background: white;
+        margin: 40px 0;
+        padding: 40px;
+        border-radius: 20px;
+        border: 4px solid #2d3436;
+        box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.1);
+        position: relative;
+        transform: rotate(-0.5deg);
+        transition: transform 0.3s ease;
+      }
+
+      section:nth-child(even) {
+        transform: rotate(0.5deg);
+        background: #fff9e6;
+      }
+
+      section:hover {
+        transform: rotate(0deg) scale(1.02);
+      }
+
+      h2 {
+        font-family: "Permanent Marker", cursive;
+        font-size: 2.5em;
+        color: #6c5ce7;
+        margin-bottom: 25px;
+        display: inline-block;
+        border-bottom: 5px dotted #fd79a8;
+        padding-bottom: 10px;
+      }
+
+      /* About section */
+      .about-text {
+        font-size: 1.3em;
+        line-height: 1.8;
+        color: #2d3436;
+      }
+
+      /* Projects grid */
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+        margin-top: 30px;
+      }
+
+      .project-card {
+        background: linear-gradient(135deg, #a29bfe 0%, #fd79a8 100%);
+        padding: 25px;
+        border-radius: 15px;
+        border: 3px solid #2d3436;
+        transform: rotate(-1deg);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
+      }
+
+      .project-card:nth-child(even) {
+        transform: rotate(1deg);
+        background: linear-gradient(135deg, #74b9ff 0%, #fdcb6e 100%);
+      }
+
+      .project-card:hover {
+        transform: rotate(0deg) translateY(-5px);
+        box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      .project-card h3 {
+        font-family: "Caveat", cursive;
+        font-size: 2em;
+        color: white;
+        margin-bottom: 10px;
+        text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
+      }
+
+      .project-card p {
+        color: white;
+        font-size: 1.1em;
+        line-height: 1.6;
+      }
+
+      /* Skills */
+      .skills-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-top: 20px;
+      }
+
+      .skill-badge {
+        background: #fdcb6e;
+        padding: 12px 25px;
+        border-radius: 25px;
+        border: 3px solid #2d3436;
+        font-size: 1.2em;
+        font-weight: bold;
+        transform: rotate(-2deg);
+        transition: transform 0.3s ease;
+        display: inline-block;
+      }
+
+      .skill-badge:nth-child(even) {
+        transform: rotate(2deg);
+        background: #55efc4;
+      }
+
+      .skill-badge:nth-child(3n) {
+        background: #fd79a8;
+        color: white;
+      }
+
+      .skill-badge:hover {
+        transform: rotate(0deg) scale(1.1);
+      }
+
+      /* Contact */
+      .contact-info {
+        font-size: 1.4em;
+        line-height: 2;
+      }
+
+      .contact-info a {
+        color: #0984e3;
+        text-decoration: none;
+        border-bottom: 3px solid #74b9ff;
+        transition: all 0.3s ease;
+      }
+
+      .contact-info a:hover {
+        color: #e84393;
+        border-bottom-color: #fd79a8;
+      }
+
+      .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 10px;
+      }
+
+      .contact-icon {
+        width: 24px;
+        height: 24px;
+        object-fit: contain;
+      }
+
+      /* Footer */
+      footer {
+        text-align: center;
+        padding: 40px 20px;
+        font-size: 1.2em;
+        color: #636e72;
+      }
+
+      .heart {
+        display: inline-block;
+        animation: heartbeat 1.5s ease-in-out infinite;
+        color: #e84393;
+      }
+
+      @keyframes heartbeat {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        25% {
+          transform: scale(1.2);
+        }
+        50% {
+          transform: scale(1);
+        }
+      }
+
+      /* === Roadmap Section === */
+      .roadmap {
+        background: #ffffff;
+        border: 4px solid #2d3436;
+        border-radius: 20px;
+        box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.1);
+        padding: 50px 0;
+        margin: 60px 0;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        transform: rotate(-0.5deg);
+      }
+
+      .roadmap h2 {
+        font-family: "Permanent Marker", cursive;
+        font-size: 2.8em;
+        color: #6c5ce7;
+        border-bottom: 5px dotted #fd79a8;
+        display: inline-block;
+        padding-bottom: 10px;
+        margin-bottom: 30px;
+      }
+
+      .map-container {
+        position: relative;
+        width: 100%;
+        max-width: 900px;
+        margin: 0 auto;
+        height: 600px;
+      }
+
+      /* === Road === */
+      .winding-road {
+        width: 100%;
+        height: 100%;
+        position: center;
+        z-index: 1;
+      }
+
+      /* === Destinations === */
+      .destination {
+        background: #ffeaa7;
+        border: 4px solid #2d3436;
+        border-radius: 25px;
+        padding: 20px;
+        width: 250px;
+        position: absolute;
+        text-align: center;
+        box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.1);
+        transform: rotate(-2deg);
+        transition: transform 0.3s ease, background 0.3s ease;
+        z-index: 4;
+      }
+
+      .destination:hover {
+        transform: rotate(0deg) scale(1.05);
+        background: #fdcb6e;
+      }
+
+      .destination h3 {
+        font-family: "Caveat", cursive;
+        font-size: 1.8em;
+        color: #6c5ce7;
+      }
+
+      .destination p {
+        font-size: 1.1em;
+        color: #2d3436;
+      }
+
+      /* Positions of the destinations */
+      .current-role {
+        top: 40px;
+        left: 10%;
+      }
+      .mid-role {
+        top: 200px;
+        left: 60%;
+      }
+      .first-role {
+        top: 400px;
+        left: 10%;
+      }
+
+      /* === Company Logo placeholders === */
+      .company-logo {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 10px;
+        border-radius: 50%;
+        background: #fff;
+        border: 3px dashed #000000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fd79a8;
+        font-weight: bold;
+        font-family: "Caveat", cursive;
+        font-size: 1em;
+        overflow: hidden; /* Keeps the image inside the circle */
+      }
+
+      .company-logo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Ensures image fills the circle nicely */
+        border-radius: 50%;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Decorative elements -->
+    <div class="doodle star" style="top: 10%; left: 5%"></div>
+    <div class="doodle star" style="top: 20%; right: 8%"></div>
+    <div class="doodle star" style="bottom: 15%; left: 10%"></div>
+    <div class="doodle squiggle" style="top: 40%; right: 5%"></div>
+    <div class="doodle squiggle" style="bottom: 30%; left: 3%"></div>
+
+    <header>
+      <h1>Hello! I'm Ami</h1>
+      <div class="profile-pic-container">
+        <div class="profile-pic">
+          <img src="images/about/me.jpeg" alt="Profile Picture" />
+        </div>
+      </div>
+      <div class="subtitle">welcome to my portfolio <3</div>
+    </header>
+
+    <div class="container">
+      <section>
+        <h2>About Me</h2>
+        <p class="about-text">
+          I am a biomedical engineering graduate from King's College London
+          currently working as a Data & AI Capability Analyst at National Grid.
+          I love anything creative, from art to writing to problem-solving with
+          code. When I'm not working, you might find me spending quality time
+          with friends, experimenting with my film camera, or trying out new
+          recipes!
+        </p>
+      </section>
+
+      <section class="roadmap">
+        <h2>My Journey</h2>
+        <div class="map-container">
+          <svg
+            class="winding-road"
+            viewBox="0 0 800 600"
+            preserveAspectRatio="xMidYMid meet"
+          >
+            <path
+              d="M100 550 
+                     Q 200 400 400 500 
+                     T 700 300
+                     Q 600 150 400 200
+                     T 100 100"
+              fill="none"
+              stroke="#2d3436"
+              stroke-width="50"
+              stroke-linecap="round"
+            />
+            <path
+              d="M100 550 
+                     Q 200 400 400 500 
+                     T 700 300
+                     Q 600 150 400 200
+                     T 100 100"
+              fill="none"
+              stroke="#fff"
+              stroke-width="10"
+              stroke-dasharray="40 40"
+            />
+          </svg>
+
+          <!-- Destinations -->
+          <div class="destination current-role">
+            <div class="company-logo">
+              <img src="icons/nationalgrid.png" alt="National Grid Logo" />
+            </div>
+            <h3>Current Role</h3>
+            <p>Data & AI Capability Analyst — National Grid</p>
+          </div>
+          <div class="destination mid-role">
+            <div class="company-logo">
+              <img src="icons/sigmalabs.png" alt="Sigma Labs Logo" />
+            </div>
+            <h3>Training</h3>
+            <p>Junior Data & Software Engineer — Sigma Labs</p>
+          </div>
+          <div class="destination first-role">
+            <div class="company-logo">
+              <img
+                src="icons/kingscollegelondon.jpeg"
+                alt="King's College London Logo"
+              />
+            </div>
+            <h3>Education</h3>
+            <p>Biomedical Engineering — King's College London</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>My Projects</h2>
+        <div class="projects-grid">
+          <div class="project-card">
+            <h3>Eco Intel</h3>
+            <p>
+              UK-based climate monitoring dashboard that integrates several APIs
+              including weather, rainfall, floods, and air quality.
+            </p>
+          </div>
+
+          <div class="project-card">
+            <h3>Food Truck ETL</h3>
+            <p>[Brief description]</p>
+          </div>
+          <div class="project-card">
+            <h3>Live Tableau Dashboard for Museum</h3>
+            <p>[Brief description]</p>
+          </div>
+          <div class="project-card">
+            <h3>CLI Airport Departure Board</h3>
+            <p>[Brief description]</p>
+          </div>
+          <div class="project-card">
+            <h3>Pulse Oximeter</h3>
+            <p>[Brief description]</p>
+          </div>
+          <div class="project-card">
+            <h3>Machine Learning for Fetal Brain Analysis href</h3>
+            <a href="files/Ami-Karthi-Kumar-BEng-Dissertation.pdf"
+              >View Dissertation</a
+            >
+            <p>[Brief description]</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Things I'm Good At</h2>
+        <div class="skills-list">
+          <span class="skill-badge">Python</span>
+          <span class="skill-badge">SQL</span>
+          <span class="skill-badge">Streamlit</span>
+          <span class="skill-badge">Tableau</span>
+          <span class="skill-badge">Photography</span>
+          <span class="skill-badge">Social Media</span>
+          <span class="skill-badge">Problem Solving</span>
+          <span class="skill-badge">Creativity</span>
+          <span class="skill-badge">Chai Making</span>
+          <span class="skill-badge">Communication</span>
+        </div>
+      </section>
+
+      <section>
+        <h2>Get In Touch!</h2>
+        <div class="contact-info">
+          <div class="contact-item">
+            <img src="icons/gmail.png" alt="Email Icon" class="contact-icon" />
+            <a href="mailto:ami.karthikumar@gmail.com"
+              >ami.karthikumar@gmail.com</a
+            >
+          </div>
+          <div class="contact-item">
+            <img
+              src="icons/github.png"
+              alt="GitHub Logo"
+              class="contact-icon"
+            />
+            <a href="https://github.com/AmiruthaVallii">@AmiruthaVallii</a>
+          </div>
+          <div class="contact-item">
+            <img
+              src="icons/linkedin.png"
+              alt="LinkedIn Logo"
+              class="contact-icon"
+            />
+            <a
+              href="https://linkedin.com/in/amiruthavallii-karthi-kumar-6b7256199"
+              >Amiruthavallii Karthi Kumar</a
+            >
+            <div class="contact-item">
+              <img
+                src="icons/medium.png"
+                alt="Medium Logo"
+                class="contact-icon"
+              />
+              <a href="https://medium.com/@valliintine">@valliintine</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <footer>Made with <span class="heart">🩷</span></footer>
+  </body>
+</html>
