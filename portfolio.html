@@ -425,6 +425,79 @@
         object-fit: cover; /* Ensures image fills the circle nicely */
         border-radius: 50%;
       }
+
+      .video-container {
+        margin-top: 15px;
+        border: 3px solid #2d3436;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .github-sticker {
+        display: inline-block;
+        margin-top: 15px;
+        padding: 8px 18px;
+        background: #ffffff;
+        color: #2d3436;
+        font-size: 1.1em;
+        font-weight: bold;
+        text-decoration: none;
+        border: 3px solid #2d3436;
+        border-radius: 20px;
+        box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.2);
+        transform: rotate(-3deg);
+        transition: all 0.25s ease;
+      }
+
+      .github-sticker:hover {
+        background: #55efc4;
+        transform: rotate(0deg) scale(1.05);
+        box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.25);
+      }
+
+      /* Project image (polaroid vibe) */
+      .project-thumb {
+        margin: 12px 0 14px;
+        padding: 10px;
+        background: #ffffff;
+        border: 3px solid #2d3436;
+        border-radius: 14px;
+        box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.2);
+        transform: rotate(-2deg);
+        overflow: hidden;
+      }
+
+      .project-thumb img {
+        width: 100%;
+        height: 160px;
+        object-fit: cover;
+        border-radius: 10px;
+        border: 2px dashed #2d3436;
+      }
+
+      /* Dissertation link — same sticker family as GitHub */
+      .dissertation-sticker {
+        display: inline-block;
+        margin-top: 12px;
+        padding: 8px 18px;
+        background: #ffffff;
+        color: #2d3436;
+        font-size: 1.1em;
+        font-weight: bold;
+        text-decoration: none;
+        border: 3px solid #2d3436;
+        border-radius: 20px;
+        box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.2);
+        transform: rotate(2deg);
+        transition: all 0.25s ease;
+      }
+
+      .dissertation-sticker:hover {
+        background: #74b9ff;
+        transform: rotate(0deg) scale(1.05);
+        box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.25);
+      }
     </style>
   </head>
   <body>
@@ -442,7 +515,7 @@
           <img src="images/about/me.jpeg" alt="Profile Picture" />
         </div>
       </div>
-      <div class="subtitle">welcome to my portfolio <3</div>
+      <div class="subtitle">welcome to my world <3</div>
     </header>
 
     <div class="container">
@@ -521,12 +594,20 @@
       <section>
         <h2>My Projects</h2>
         <div class="projects-grid">
-          <div class="project-card">
+          <div class="project-card eco-intel">
             <h3>Eco Intel</h3>
             <p>
-              UK-based climate monitoring dashboard that integrates several APIs
-              including weather, rainfall, floods, and air quality.
+              UK-based climate monitoring dashboard that integrates weather,
+              rainfall, flood, and air quality APIs.
             </p>
+
+            <a
+              href="https://github.com/AmiruthaVallii/climate-monitor"
+              target="_blank"
+              class="github-sticker"
+            >
+              🌱 see the code
+            </a>
           </div>
 
           <div class="project-card">
@@ -543,14 +624,59 @@
           </div>
           <div class="project-card">
             <h3>Pulse Oximeter</h3>
-            <p>[Brief description]</p>
-          </div>
-          <div class="project-card">
-            <h3>Machine Learning for Fetal Brain Analysis href</h3>
-            <a href="files/Ami-Karthi-Kumar-BEng-Dissertation.pdf"
-              >View Dissertation</a
+            <p>
+              A biomedical sensor project that measures blood oxygen saturation
+              and heart rate using photoplethysmography (PPG) principles.
+              Additional mobile app for real-time metric tracking and data
+              visualisation.
+            </p>
+
+            <a
+              href="files/Mechatronics Project Documentation.pdf"
+              target="_blank"
+              class="dissertation-sticker"
             >
-            <p>[Brief description]</p>
+              🛠️📄 view documentation
+            </a>
+
+            <!-- Embedded YouTube Video -->
+            <div class="video-container">
+              <iframe
+                width="100%"
+                height="200"
+                src="https://www.youtube-nocookie.com/embed/_ClmN5ayLH4"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen
+              ></iframe>
+            </div>
+          </div>
+
+          <div class="project-card fetal-brain">
+            <h3>Machine Learning for Fetal Brain Analysis</h3>
+
+            <div class="project-thumb">
+              <img
+                src="images/projects/BEng.png"
+                alt="Fetal brain project preview"
+              />
+            </div>
+
+            <p>
+              Explored how the fetal brain changes during pregnancy by applying
+              machine learning to MRI images, helping build a clearer picture of
+              normal brain development and how deviations may emerge.
+            </p>
+
+            <a
+              href="files/Ami-Karthi-Kumar-BEng-Dissertation.pdf"
+              target="_blank"
+              class="dissertation-sticker"
+            >
+              🧠📄 view dissertation
+            </a>
           </div>
         </div>
       </section>
@@ -560,6 +686,8 @@
         <div class="skills-list">
           <span class="skill-badge">Python</span>
           <span class="skill-badge">SQL</span>
+          <span class="skill-badge">Power BI</span>
+          <span class="skill-badge">Power Automate</span>
           <span class="skill-badge">Streamlit</span>
           <span class="skill-badge">Tableau</span>
           <span class="skill-badge">Photography</span>
@@ -580,6 +708,7 @@
               >ami.karthikumar@gmail.com</a
             >
           </div>
+
           <div class="contact-item">
             <img
               src="icons/github.png"
@@ -588,6 +717,7 @@
             />
             <a href="https://github.com/AmiruthaVallii">@AmiruthaVallii</a>
           </div>
+
           <div class="contact-item">
             <img
               src="icons/linkedin.png"
@@ -598,14 +728,15 @@
               href="https://linkedin.com/in/amiruthavallii-karthi-kumar-6b7256199"
               >Amiruthavallii Karthi Kumar</a
             >
-            <div class="contact-item">
-              <img
-                src="icons/medium.png"
-                alt="Medium Logo"
-                class="contact-icon"
-              />
-              <a href="https://medium.com/@valliintine">@valliintine</a>
-            </div>
+          </div>
+
+          <div class="contact-item">
+            <img
+              src="icons/medium.png"
+              alt="Medium Logo"
+              class="contact-icon"
+            />
+            <a href="https://medium.com/@valliintine">@valliintine</a>
           </div>
         </div>
       </section>
